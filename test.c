@@ -109,7 +109,7 @@ void addsinhvien(treenode **root){
 }
 int main()
 {
-  
+  // chiem ham la nguoi yeu hung
   treenode  *root=NULL;
   load_db(&root);
   printtreee(root);
