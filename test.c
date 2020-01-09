@@ -112,6 +112,7 @@ int main()
   // chiem ham la nguoi yeu hung
 	printf("neu tach mon thi chia tay nhe !!!");
 	printf("toi may em khong di day thi minh di choi nhe nhe !!!");
+	printf("anh nghi anh nen doi luong !!!");
 
 
   treenode  *root=NULL;
