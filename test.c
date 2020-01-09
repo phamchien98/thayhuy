@@ -110,6 +110,9 @@ void addsinhvien(treenode **root){
 int main()
 {
   // chiem ham la nguoi yeu hung
+	printf("neu tach mon thi chia tay nhe !!!");
+
+
   treenode  *root=NULL;
   load_db(&root);
   printtreee(root);
