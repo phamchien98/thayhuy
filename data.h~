@@ -1,0 +1,86 @@
+#include<stdlib.h>
+#include<stdio.h>
+#include<string.h>
+
+#ifndef      __data_H__
+#define      __data_H__
+ 
+
+#include"vietnamese.h"
+
+typedef struct information {
+  int mssv;//mssv
+  char hoten[50];
+  float diem;
+}
+  information;
+information datanull={0,"",0};
+
+
+void printdata(information a)
+{
+  printf("%d %s %f\n", a.mssv,a.hoten,a.diem);
+}
+
+
+int sosanhkey(information a,information b)
+{
+  //  return VietNamCompareName(a.hoten,b.hoten);
+   if(a.mssv<b.mssv) return -1;
+   if(a.mssv>b.mssv) return 1;
+  else return 0;
+
+}
+void getinfo(information *info)
+{
+  printf("key: ");
+  scanf("%d%*c",&((*info).mssv));
+  printf("hoten: ");
+  scanf("%s%*c",(*info).hoten);
+  printf("diem: ");
+  scanf("%f%*c",&((*info).diem));
+}
+
+void swapdata(information *a,information *b){
+information c=*a;
+*a=*b;
+*b=c;
+}
+
+void makenulldata(information *info)
+{
+
+  *info=datanull;
+}
+
+
+
+
+
+
+
+void swapfloat(float *,float*);
+void swapfloat(float *a,float *b){
+  float t=*a;
+  *a=*b;
+  *b=t;
+}
+
+void swapint(int *,int*);
+void swapint(int *a,int *b){
+  int t=*a;
+  *a=*b;
+  *b=t;
+}
+
+void swapstring(char *,char *);
+void swapstring(char a[],char b[]){
+  char t[50];
+  strcpy(t,a);
+  strcpy(a,b);
+  strcpy(b,t);
+}
+
+
+   
+#endif
