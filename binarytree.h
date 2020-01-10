@@ -199,7 +199,7 @@ void printtreee(treenode *root){
     return ;
   }
   printtreee((*root).left);
-  printf("%s %s\n",(*root).info.tienganh,(*root).info.tiengviet);
+  printf("%s \t\t: %s\n",(*root).info.tienganh,(*root).info.tiengviet);
   // if (strcmp((*root).info.hoten,"Admin")!=0){
     
   // }
@@ -251,8 +251,6 @@ void printtreee_byscore(treenode *root){
 }
 
 
-void freeallnodetree(treenode **root){
 
-}
 
 #endif

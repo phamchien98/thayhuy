@@ -40,9 +40,9 @@ void freetree(treenode **root)
   if(*root!=NULL)
     {
       if((*root)->left!=NULL)
-	freetree(&((*root)->left));
+	       freetree(&((*root)->left));
       if((*root)->right!=NULL)
-	freetree(&((*root)->right));
+	       freetree(&((*root)->right));
       free(*root);
       *root=NULL;
     }

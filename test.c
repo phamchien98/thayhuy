@@ -43,11 +43,17 @@ int load_db(treenode  **root){
 	fp=fopen("dict.txt", "r");
 	char tienganh[50],tiengviet[50];
 	float diem;
+	int i;
 	while(!feof(fp)){ 
 
 		fscanf(fp,"%s %s%*c",tienganh,tiengviet);
 		if(feof(fp)){
 			break;
+		}
+		for (i=0; i<strlen(tiengviet);i++){
+			if(tiengviet[i]=='_'){
+				tiengviet[i]=' ';
+			}
 		}
 		printf("%s %s\n",tienganh,tiengviet);
 		// add node
@@ -133,6 +139,8 @@ int main()
   char cautienganh[2000],token[30];
   int tokenindex=0;
   int chieudaicau=0;
+
+  int cothedichduochet=1;
   int i=0;
      do{
       menu();
@@ -143,7 +151,13 @@ int main()
       }
       else
       if(choose==2){
-      	printtreee(root);
+      	if(root==NULL){
+      		printf("Ban phai nap tu dien truoc tien\n");
+      	}
+      	else{
+      		printtreee(root);
+      	}
+      	
       	
       }
       else
@@ -247,159 +261,3 @@ int main()
   return 0;	
 }
 
-
-// int main()
-// {
-//   // chiem ham la nguoi yeu hung
-
-
-//   treenode  *root=NULL;
-//   load_db(&root);
-//   printtreee(root);
-//   int count=0;
-
-//   int choose=0,choose_sv=0,choose_admin=0;
-//      do{
-//       menu();
-//       scanf("%d%*c",&choose);
-//       if (choose==1){
-//       	// xu ly dang nhap
-//       	int ketquadangnhap=dangnhap(root);
-//       	if(ketquadangnhap==1){
-//       		printf("chao mung admin\n");
-//       		do{
-	      		
-// 	      		menuadmin();
-// 	      		scanf("%d%*c",&choose_admin);
-// 	      		if(choose_admin==1){
-// 	      			// them sinhvien
-// 	      			addsinhvien(&root);
-// 	      			// printf("_______\n");
-// 	      			// printtreee(root);
-
-// 	      		}
-// 	      		else if (choose_admin==2){
-// 	      			printtreee_byscore(root);
-// 	      		}
-// 	      		else if (choose_admin==3){
-// 	      			printf("_____\n");
-// 	      			char hoten[50];
-// 	      			printf("nhap ten: ");
-// 	      			scanf("%s%*c",hoten);
-// 	      			if(strcmp(hoten,"Admin")==0){
-// 	      				printf("khong cho xoa\n");
-// 	      			}
-// 	      			else{
-// 	      				information info;
-// 	      				information trave;
-
-	      				
-	      				
-// 	      				strcpy(info.hoten,hoten);
-// 	      				treenode* match_node=binarysearch_phanbiethoatthuong(root,info);
-// 	      				if (match_node==NULL){
-// 	      					printf("khong tim thay tai khoan\n");
-// 	      				}
-// 	      				else{
-// 	      					printtreee_byscore(root);
-// 	      					printf("========\n");
-// 	      					binarydelete(&root,info,&trave);
-// 	      					printtreee_byscore(root);
-// 	      				}
-	      				
-// 	      			}
-
-	      			
-// 	      		}
-// 	      		else if (choose_admin==4){
-// 	      			FILE *fout=fopen("sinhvien_2.txt", "w");
-// 	      			fprinttreee(root,fout);
-// 	      			fclose (fout);
-// 	      			break;
-// 	      		}
-//       		}while(choose_admin!=4);
-
-//       	}
-//       	else if(ketquadangnhap==2){
-//       		printf("admin nhap sai password\n");
-//       		count++;
-
-//       	}
-//       	else if(ketquadangnhap==3){
-//       		printf("khong ton tai ten dang nhap dung\n");
-//       		count++;
-
-//       	}
-//       	else if(ketquadangnhap==4){
-      		
-//       		do{
-//       			printf("chao mung sinhvien\n");
-// 	      		menusinhvien();
-// 	      		scanf("%d%*c",&choose_sv);
-//       			if(choose_sv==1)
-// 	      		{
-// 	      			information info;
-// 	      			strcpy(info.hoten,ten);
-// 	      			treenode* node_sv = binarysearch(root,info);
-// 	      			printf("%f \n",(*node_sv).info.diem);
-
-// 	      		}
-// 	      		else 
-// 	      		if (choose_sv==2)
-// 	      		{
-// 	      			char password_new1[50];
-// 	      			char password_new2[50];
-// 	      			printf("Nhap mat khau moi:\n");
-// 	      			scanf("%s%*c",password_new1);
-// 	      			printf("Nhap lai mat khau moi:\n");
-// 	      			scanf("%s%*c",password_new2);
-// 	      			if(strcmp(password_new1,password_new2)!=0)
-// 	      			{
-// 	      				printf("Mat khau ko khop\n");
-// 	      			}
-// 	      			else {
-
-// 		      			information info;
-// 		      			strcpy(info.hoten,ten);
-// 		      			treenode* node_sv = binarysearch(root,info);
-// 	      				strcpy((*node_sv).info.password,password_new1);
-// 	      				printtreee(root);
-// 	      			}
-// 	      		}
-
-// 	      		else
-// 	      		if(choose_sv==3)
-// 	      		{
-// 	      			FILE *fout=fopen("sinhvien_3.txt", "w");
-// 	      			fprinttreee(root,fout);
-// 	      			fclose (fout);
-// 		      		break;
-// 	      		}
-//       		}
-//       		while(1);
-      		
-
-//       	}
-//       	else if(ketquadangnhap==5){
-//       		printf("password bi sai\n");
-//       		count++;
-
-//       	}
-
-//       	if(count==3)
-//       		{break;}
-
-//       }
-//       else
-//       	if(choose==2){
-//       		// thoat
-//       		break;
-//       	}
-//       	else{
-//       		printf("khong hop le");
-//       	}
-
-
-//      }while (1);
-//   return 0;	
-// }
