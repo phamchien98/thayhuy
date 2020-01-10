@@ -6,12 +6,16 @@
 #include "sort.h"
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 typedef struct thongke{ int songuoi; char dochoi[30];} thongke;
 
 void menu()
 {
   printf("1.nap tu dien\n");
   printf("2.noi dung tu dien\n");
+  printf("3.Them sua tu\n");
+  printf("4.Dich cau anh viet\n");
+  printf("5.Thoat\n");
  
  
 }
@@ -44,7 +48,7 @@ int load_db(treenode  **root){
 		if(feof(fp)){
 			break;
 		}
-		// printf("%s %s %f\n",ten,password,diem);
+		printf("%s %s\n",tienganh,tiengviet);
 		// add node
 		information info;
 		strcpy(info.tienganh,tienganh);
@@ -119,21 +123,108 @@ int main()
 
 
   treenode  *root=NULL;
-  load_db(&root);
-  printtreee(root);
+  
   int count=0;
 
   int choose=0,choose_sv=0,choose_admin=0;
+  char yes_no;
+  char tutienganhmoi[50],tutiengvietmoi[50];
+  char cautienganh[2000],token[30];
+  int tokenindex=0;
+  int chieudaicau=0;
+  int i=0;
      do{
       menu();
       scanf("%d%*c",&choose);
       if (choose==1){
-
+		load_db(&root);
+		// printtreee(root);
       }
       else
       if(choose==2){
-      	break;
+      	printtreee(root);
+      	
       }
+      else
+      if(choose==3){
+      	printf("nhap vao tu tieng anh: ");
+      	scanf("%s%*c",tutienganhmoi);
+      	information info;
+      	strcpy(info.tienganh,tutienganhmoi);
+      	treenode* matchnode=binarysearch(root,info);
+      	if(matchnode==NULL){
+      		// them tu moi vao tu diem
+      		printf("them nghia cua tu:\n");
+      		scanf("%s%*c",tutiengvietmoi);
+      		information info;
+      		strcpy(info.tienganh,tutienganhmoi);
+      		strcpy(info.tiengviet,tutiengvietmoi);
+      		binaryadd(&root,info);
+
+      	}
+      	else{
+      		printf("ban co muon sua nghia khong (y/n): ");
+      		scanf("%c%*c",&yes_no);
+      		if(yes_no=='y'||yes_no=='Y'){
+      			printf("cap nhat nghia cua tu:\n");
+      			scanf("%s%*c",tutiengvietmoi);
+      			printtreee(root);
+      			printf("-------update---\n");
+      			strcpy((*matchnode).info.tiengviet,tutiengvietmoi);
+      			printtreee(root);
+      		}
+      		else{
+      			printf("khong cap nhat\n");
+      		}
+      	}
+      }
+      else
+      if(choose==4){
+      	//input string
+      	scanf("%[^\n]%*c",cautienganh);
+      	// chuan hoa ve dang viet thuong
+      	for(int i = 0; cautienganh[i]; i++){
+		    cautienganh[i] = tolower(cautienganh[i]);
+		 }
+		// khoi tao token la 1 string rong
+      	token[0]='\0';
+      	chieudaicau=strlen(cautienganh);
+      	// them  dau cach vao cuoi cau 
+      	cautienganh[chieudaicau+1]='\0';
+      	cautienganh[chieudaicau]=' ';
+
+      	for(i=0;i<strlen(cautienganh);i++){
+      		// printf("%d\n",i );	
+      		if(cautienganh[i]==' '){
+      			token[tokenindex]='\0';
+      			// printf("%s\n", token);
+      			information info;
+		      	strcpy(info.tienganh,token);
+		      	treenode* match_node_dich_cau=binarysearch(root,info);
+	      		if(match_node_dich_cau==NULL){
+	      			printf("<thieu tu> ");
+	      		}
+	      		else{
+	      			printf("%s ",(*match_node_dich_cau).info.tiengviet);
+	      		}
+      		
+      			tokenindex=0;
+      		}
+      		else{
+      			token[tokenindex]=cautienganh[i];
+      			tokenindex++;
+      		}
+      	}
+      	printf("\n");
+      	
+      }
+      else
+      if(choose==5){
+      	// delte cay
+      	break;
+      	
+      }
+
 
 
      }while (1);
