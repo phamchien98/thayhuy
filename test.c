@@ -236,6 +236,7 @@ int main()
       else
       if(choose==5){
       	// delte cay
+      	freetree(&root);
       	break;
       	
       }
