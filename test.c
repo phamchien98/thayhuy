@@ -164,6 +164,9 @@ int main()
       if(choose==3){
       	printf("nhap vao tu tieng anh: ");
       	scanf("%s%*c",tutienganhmoi);
+      	for(int i = 0; tutienganhmoi[i]; i++){
+		    tutienganhmoi[i] = tolower(tutienganhmoi[i]);
+		 }
       	information info;
       	strcpy(info.tienganh,tutienganhmoi);
       	treenode* matchnode=binarysearch(root,info);
