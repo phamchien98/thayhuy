@@ -199,9 +199,10 @@ void printtreee(treenode *root){
     return ;
   }
   printtreee((*root).left);
-  if (strcmp((*root).info.hoten,"Admin")!=0){
-    printf("%s %s %f\n",(*root).info.hoten,(*root).info.password,(*root).info.diem);
-  }
+  printf("%s %s\n",(*root).info.tienganh,(*root).info.tienganh);
+  // if (strcmp((*root).info.hoten,"Admin")!=0){
+    
+  // }
   
   printtreee((*root).right);
 }

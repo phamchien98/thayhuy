@@ -14,6 +14,8 @@ typedef struct information {
   char password[50];
   char quequan[50];
   float diem;
+  char tienganh[50];
+  char tiengviet[50];
 }
   information;
 information datanull={0,"",0};
@@ -45,8 +47,8 @@ int sosanhkey(information a,information b)
 {
   //  return VietNamCompareName(a.hoten,b.hoten);
   char ten_a[50],ten_b[50];
-  strcpy(ten_a,a.hoten);
-  strcpy(ten_b,b.hoten);
+  strcpy(ten_a,a.tienganh);
+  strcpy(ten_b,b.tienganh);
 
   for(int i = 0; ten_a[i]; i++){
     ten_a[i] = tolower(ten_a[i]);

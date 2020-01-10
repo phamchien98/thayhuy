@@ -1,0 +1,5 @@
+school truong_hoc
+age tuoi_tac
+cat meo
+dog con_cho
+zoo cong_vien
