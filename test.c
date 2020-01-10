@@ -16,6 +16,7 @@ void menu()
   printf("3.Them sua tu\n");
   printf("4.Dich cau anh viet\n");
   printf("5.Thoat\n");
+  printf("Choose:");
  
  
 }
@@ -154,7 +155,7 @@ int main()
       	treenode* matchnode=binarysearch(root,info);
       	if(matchnode==NULL){
       		// them tu moi vao tu diem
-      		printf("them nghia cua tu:\n");
+      		printf("them nghia cua tu:");
       		scanf("%s%*c",tutiengvietmoi);
       		information info;
       		strcpy(info.tienganh,tutienganhmoi);
@@ -166,7 +167,7 @@ int main()
       		printf("ban co muon sua nghia khong (y/n): ");
       		scanf("%c%*c",&yes_no);
       		if(yes_no=='y'||yes_no=='Y'){
-      			printf("cap nhat nghia cua tu:\n");
+      			printf("cap nhat nghia cua tu:");
       			scanf("%s%*c",tutiengvietmoi);
       			printtreee(root);
       			printf("-------update---\n");
@@ -192,7 +193,19 @@ int main()
       	// them  dau cach vao cuoi cau 
       	cautienganh[chieudaicau+1]='\0';
       	cautienganh[chieudaicau]=' ';
-
+      	for(i=0;i<strlen(cautienganh);i++){
+      		// printf("%d\n",i );	
+      		if(cautienganh[i]==' '){
+      			token[tokenindex]='\0';
+      			printf("%s\n", token);
+      			tokenindex=0;
+      		}
+      		else{
+      			token[tokenindex]=cautienganh[i];
+      			tokenindex++;
+      		}
+      	}
+      	printf("\n");
       	for(i=0;i<strlen(cautienganh);i++){
       		// printf("%d\n",i );	
       		if(cautienganh[i]==' '){
@@ -216,6 +229,8 @@ int main()
       		}
       	}
       	printf("\n");
+
+      	
       	
       }
       else
